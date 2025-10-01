@@ -1,5 +1,6 @@
 package edu.co.icesi.examjpatemplate.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.util.List;
 
@@ -13,8 +14,7 @@ public class Route {
 
     private String type;
 
-    @OneToMany(mappedBy = "buses", cascade = CascadeType.ALL)
-    @JoinColumn(name="route_id")
+    @OneToMany(mappedBy = "route", cascade = CascadeType.ALL)
     private List<Bus> buses;
 
     public Integer getId() {
@@ -41,6 +41,7 @@ public class Route {
         this.type = type;
     }
 
+    @JsonIgnore
     public List<Bus> getBuses() {
         return buses;
     }
